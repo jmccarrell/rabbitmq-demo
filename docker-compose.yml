@@ -3,9 +3,14 @@ version: '2'
 services:
   rabbitmq:
     image: 'docker.io/bitnami/rabbitmq:3.8-debian-10'
+    environment:
+      - RABBITMQ_USERNAME
+      - RABBITMQ_PASSWORD
+      - RABBITMQ_NODE_PORT_NUMBER
+      - RABBITMQ_VHOST
     ports:
       - '4369:4369'
-      - '5672:5672'
+      - "${RABBITMQ_NODE_PORT_NUMBER}:${RABBITMQ_NODE_PORT_NUMBER}"
       - '25672:25672'
       - '15672:15672'
     volumes:
