@@ -1,0 +1,27 @@
+* RabbitMQ Demo Project
+
+  I implemented a very simple event generator and event sync that uses RabbitMQ for the message middleware.
+
+  This is very much hello world for an event system.
+
+  There is an implementation of the leaky bucket algorithm to provide rate limiting, which I did not write.
+
+* RabbitMQ config
+  I did take the time to create a distinct /vhost/ and user separate from the defaults.  That config state
+  was not mapped back to a docker image, so if I decide to re-create this, those credentials will once again
+  need to be created.  Those notes are in my n10076 project.
+
+  I stored the broker config here as well, which could make it easier to re-create.
+
+  The username/password for the admin user remains the stock bitnami values: user/bitnami.
+
+* Run It
+
+  - pipenv shell in 3 windows
+  - start rabbitmq:
+    - =docker-compose up=
+    - one can see the nice UI by starting the web interface from Docker Desktop
+  - start the producer
+    - =python hello_publisher.py=
+  - start the consumer
+    - =python hello_consumer.py=
